@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script>
+    var state = true;
+    function toggleLight(){
+      var image = document.getElementById("image");
+      state = !state; //切換狀態
+      image.src = state ? "img/on.jpg" : "img/off.jpg"; //切換圖片
+    }
+
+    var timeLeft = 5;  
+    function countDownTimer() {
+      
+      timeLeft = timeLeft - 1;
+      if (timeLeft <= 0) {
+        document.getElementById("image").src = "img/off.jpg"
+        clearInterval(id);  //取消倒數計時器的interval設定
+      }
+      document.getElementById("timer").innerHTML = timeLeft;
+    }
+    var id = setInterval(countDownTimer, 1000);
+    
+  </script>
+</head>
+<body>
+  <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+  <div class="div" id="timer">5</div>
+  <img id="image" src="img/on.jpg">  
+</body>
+</html>
