@@ -4,18 +4,37 @@
   <title></title>
   <script>
     var state = true;
+    var timeLeft = 5;
+
     function toggleLight(){
+      console.log(state);
       var image = document.getElementById("image");
-      state = !state; //切換狀態
-      image.src = state ? "img/on.jpg" : "img/off.jpg"; //切換圖片
+      if (true == state) {
+        console.log('turn off');
+        image.src = "img/off.jpg";
+        state = !state;
+        timeLeft = 0;
+        document.getElementById("timer").innerHTML = timeLeft;
+        clearInterval(id);
+      }
+
+      else {
+        console.log('turn on');        
+        image.src = "img/on.jpg";
+        state = !state;
+        timeLeft = 5;
+        document.getElementById("timer").innerHTML = timeLeft;
+        id = setInterval(countDownTimer, 1000);
+      }
+      
     }
 
-    var timeLeft = 5;  
     function countDownTimer() {
       
       timeLeft = timeLeft - 1;
       if (timeLeft <= 0) {
-        document.getElementById("image").src = "img/off.jpg"
+        document.getElementById("image").src = "img/off.jpg";
+        toggleLight();
         clearInterval(id);  //取消倒數計時器的interval設定
       }
       document.getElementById("timer").innerHTML = timeLeft;
