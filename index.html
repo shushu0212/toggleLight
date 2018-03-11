@@ -14,35 +14,30 @@
     var timeLeft = 5;
     var image = document.getElementById("image");
 
+    //按開關：換狀態，根據狀態決定開燈或關燈。
+    //若開燈，倒數計時秒數顯示5，啟動開始倒數計時。
+    //若關燈，倒數計時秒數顯示0，取消倒數計時器的interval設定。
     function toggleLight(){
+      state = !state;
+      image.src = state ? "img/on.jpg" :"img/off.jpg";
       console.log(state);
-      
-      if (true == state) {
-        console.log('turn off');
-        image.src = "img/off.jpg";
-        state = !state;
-        timeLeft = 0;
-        document.getElementById("timer").innerHTML = timeLeft;
-        clearInterval(id);
-      }
 
-      else {
-        console.log('turn on');        
-        image.src = "img/on.jpg";
-        state = !state;
+      if (true == state) {
         timeLeft = 5;
         document.getElementById("timer").innerHTML = timeLeft;
         id = setInterval(countDownTimer, 1000);
       }
-      
+      else {
+        timeLeft = 0;
+        document.getElementById("timer").innerHTML = timeLeft;
+        clearInterval(id);
+      }     
     }
 
-    function countDownTimer() {
-      
+    function countDownTimer() {     
       timeLeft = timeLeft - 1;
       if (timeLeft <= 0) {
-        image.src = "img/off.jpg";
-        toggleLight();
+        toggleLight();  //倒數計時間到，就按開關，把燈關掉
         clearInterval(id);  //取消倒數計時器的interval設定
       }
       document.getElementById("timer").innerHTML = timeLeft;
