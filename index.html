@@ -2,13 +2,21 @@
 <html>
 <head>
   <title></title>
+  
+</head>
+<body>
+  <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
+  <div class="div" id="timer">5</div>
+  <img id="image" src="img/on.jpg">
+
   <script>
     var state = true;
     var timeLeft = 5;
+    var image = document.getElementById("image");
 
     function toggleLight(){
       console.log(state);
-      var image = document.getElementById("image");
+      
       if (true == state) {
         console.log('turn off');
         image.src = "img/off.jpg";
@@ -33,7 +41,7 @@
       
       timeLeft = timeLeft - 1;
       if (timeLeft <= 0) {
-        document.getElementById("image").src = "img/off.jpg";
+        image.src = "img/off.jpg";
         toggleLight();
         clearInterval(id);  //取消倒數計時器的interval設定
       }
@@ -41,11 +49,6 @@
     }
     var id = setInterval(countDownTimer, 1000);
     
-  </script>
-</head>
-<body>
-  <button class="button" onclick="toggleLight();">ON<br>-<br>OFF</button>
-  <div class="div" id="timer">5</div>
-  <img id="image" src="img/on.jpg">  
+  </script>  
 </body>
 </html>
